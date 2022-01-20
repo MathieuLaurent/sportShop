@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+
+{% block main %}
+    <h1>Modifier un utilisateur</h1>
+    {{ form_start(userForm) }}
+
+    <div class="input-group mb-3">
+        {{ form_label(userForm.email, 'Email:', {'label_attr': {'class': 'input-group-text'}})}}
+        {{ form_widget(userForm.email, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="input-group mb-3">
+        {{ form_widget(userForm.roles) }}
+        {{ form_label(userForm.roles, 'Administrateur ', {'attr': {'class': 'form-control'}})}}
+    </div>
+    <br><br>
+    <button type="submit" class="btn btn-warning" style="margin-left:45%">Modifier</button>
+    {{ form_end(userForm) }}
+{% endblock %}

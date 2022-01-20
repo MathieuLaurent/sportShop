@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+
+{% block main %}
+    {% if not app.user %}
+        <h1>Veuillez vous connecter!</h1><hr>
+        <a href="{{path('security_login')}}"><h1> Se connecter </h1></a>
+    {% else %}
+    <h1>Liste des utilisateurs</h1>
+    <table class="table table-striped table-hover ">
+        <thead>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Email</th>
+            <th>Rôles</th>
+            <th>Action</th>
+        </thead>
+        <tbody>
+            {# On boucle sur les utilisateurs #}
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.firstname }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>
+                        {# On boucle sur les rôles #}
+                        {% for role in user.roles %}
+                            {% if role == "ROLE_USER" %}
+                                Utilisateur
+                            {% elseif role == "ROLE_ADMIN" %}
+                                Administrateur
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td><a href="{{ path('adminModifRole', {'id': user.id}) }}">Modifier</a></td>
+                </tr>
+                
+            {% else %}
+                <p>Aucun utilisateur inscrit</p>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+    <h1>Liste des Categories</h1>
+    <table class="table table-striped table-hover ">
+        <thead>
+            <th>Ref</th>
+            <th>Nom</th>
+        </thead>
+        <tbody>
+            {% for categories in category %}
+                <tr>
+                    <td>{{ categories.id }}</td>
+                    <td>{{ categories.name }}</td>
+                    <td><a href="{{path('modifCategory', {id: categories.id})}}">Modifier</a></td>
+                </tr>
+                
+            {% else %}
+                <p>Aucune catégorie</p>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h1>Liste des Articles</h1>
+    <table class="table table-striped table-hover ">
+        <thead>
+            <th>Ref</th>
+            <th>Nom</th>
+            <th>Prix</th>
+            <th>Note</th>
+        </thead>
+        <tbody>
+            {% for articles in article %}
+                <tr>
+                    <td>{{ articles.reference }}</td>
+                    <td>{{ articles.name }}</td>
+                    <td>{{ articles.price }}</td>
+                    <td>{{ articles.rate }}</td>
+                    <td><a href="{{path('modifArticle', {id: articles.id})}}">Modifier</a></td>
+                </tr>
+            {% else %}
+                <p>Aucun article</p>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+
+    <a href="{{path('addCategory')}}" class="btn btn-warning" style="width: 15%; margin: 1%; margin-left: 40%">Ajouter une catégorie</a>
+    <a href="{{path('addArticle')}}" class="btn btn-warning"style="width: 15%; margin: 1%; margin-left: 40%">Ajouter un article</a>
+
+{% endblock %}

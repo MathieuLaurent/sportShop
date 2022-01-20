@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+
+{% block main %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {{ form_start(form) }}
+        <div class="input-group mb-3">
+            {{ form_label(form.nom, 'Nom:', {'label_attr': {'class': 'input-group-text'}})}}
+            {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="input-group mb-3">
+            {{ form_label(form.prenom, 'Prenom:', {'label_attr': {'class': 'input-group-text'}})}}
+            {{ form_widget(form.prenom, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="input-group mb-3">
+            {{ form_label(form.civilite, 'Civilité:', {'label_attr': {'class': 'input-group-text'}})}}
+            {{ form_widget(form.civilite, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="input-group mb-3">
+            {{ form_label(form.email, 'Email:', {'label_attr': {'class': 'input-group-text'}})}}
+            {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        
+        <div class="input-group mb-3">
+            {{ form_label(form.objet, 'Objet:', {'label_attr': {'class': 'input-group-text'}})}}
+            {{ form_widget(form.objet, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <hr/>
+        <div class="form-group">
+            {{ form_row(form.contenu, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+    {{ form_end(form) }}
+
+{% endblock %}

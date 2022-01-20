@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+
+    {{ form_start(form) }}
+
+    <div class="input-group mb-3">
+        {{ form_label(form.name, 'Nom:', {'label_attr': {'class': 'input-group-text'}})}}
+        {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="input-group mb-3">
+        {{ form_label(form.description, 'Description:', {'label_attr': {'class': 'input-group-text'}})}}
+        {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="input-group mb-3">
+        {{ form_label(form.reference, 'Reference:', {'label_attr': {'class': 'input-group-text'}})}}
+        {{ form_widget(form.reference, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="input-group mb-3">
+        {{ form_label(form.price, 'Prix:', {'label_attr': {'class': 'input-group-text'}})}}
+        {{ form_widget(form.price, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="input-group mb-3">
+        {{ form_label(form.price_crossed, 'Prix réduit:', {'label_attr': {'class': 'input-group-text'}})}}
+        {{ form_widget(form.price_crossed, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="input-group mb-3">
+        {{ form_label(form.picture, 'Url image:', {'label_attr': {'class': 'input-group-text'}})}}
+        {{ form_widget(form.picture, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="input-group mb-3">
+        {{ form_label(form.rate, 'Note:', {'label_attr': {'class': 'input-group-text'}})}}
+        {{ form_widget(form.rate, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    
+    <br><br>
+    <button type="submit" class="btn btn-warning" style="margin-left:45%">Ajouter</button>
+    {{ form_end(form) }}
+
+{% endblock %}

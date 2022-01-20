@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+
+{% block main %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {{ form_start(form) }}
+        <div class="input-group mb-3">
+            {{ form_label(form.numcommande, 'N° commande:', {'label_attr': {'class': 'input-group-text'}})}}
+            {{ form_widget(form.numcommande, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="input-group mb-3">
+            {{ form_label(form.email, 'Email:', {'label_attr': {'class': 'input-group-text'}})}}
+            {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="input-group mb-3">
+            {{ form_label(form.motif, 'Motif:', {'label_attr': {'class': 'input-group-text'}})}}
+            {{ form_widget(form.motif, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <hr/>
+        <div class="form-group">
+            {{ form_row(form.message, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    {{ form_end(form) }}
+
+{% endblock %}

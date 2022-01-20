@@ -2,36 +2,41 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\CategoryRepository;
+use Mailjet\Resources;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ContentController extends AbstractController
 {
     #[Route('/footer/{title}', name: 'footer')]
-    public function cgv(string $title): Response
+    public function cgv(string $title, CategoryRepository $category): Response
     {
         return $this->render('content/cgv.html.twig', [
             'controller_name' => 'ContentController',
             'title' => $title,
+            'category' => $category->findAll()
         ]);
     }
 
     #[Route('/footer/{title}', name: 'footer')]
-    public function mentionLegale(string $title): Response
+    public function mentionLegale(string $title, CategoryRepository $category): Response
     {
-        return $this->render('content/mentionLegale.html.twig', [
+        return $this->render('content/cgv.html.twig', [
             'controller_name' => 'ContentController',
             'title' => $title,
+            'category' => $category->findAll()
         ]);
     }
 
     #[Route('/footer/{title}', name: 'footer')]
-    public function politique(string $title): Response
+    public function politique(string $title, CategoryRepository $category): Response
     {
-        return $this->render('content/politique.html.twig', [
+        return $this->render('content/cgv.html.twig', [
             'controller_name' => 'ContentController',
             'title' => $title,
+            'category' => $category->findAll()
         ]);
     }
 }

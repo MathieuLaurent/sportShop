@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block main %}
+    <h1>S'inscrire</h1>
+    <hr>
+
+    {{ form_start(registrationForm) }}
+    
+        <div class="input-group mb-3">
+            {{ form_label(registrationForm.name, 'Nom:', {'label_attr': {'class': 'input-group-text'}})}}
+            {{ form_widget(registrationForm.name, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        
+        <div class="input-group mb-3">
+            {{ form_label(registrationForm.firstname, 'Prénom:', {'label_attr': {'class': 'input-group-text'}})}}
+            {{ form_widget(registrationForm.firstname, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+        <div class="input-group mb-3">
+            {{ form_label(registrationForm.email, 'Email:', {'label_attr': {'class': 'input-group-text'}})}}
+            {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        
+        <div class="input-group">
+            {{ form_label(registrationForm.password, 'Mot de passe:', {'label_attr': {'class': 'input-group-text'}})}}
+            {{ form_widget(registrationForm.password, {'attr' : {label: 'Password', 'class': 'form-control'}}) }}
+        </div>
+        {{ form_widget(registrationForm.agreeTerms) }}
+        {{ form_label(registrationForm.agreeTerms, 'Accepter les conditions générales d\'utilistation ', {'attr': {'class': 'form-control'}})}}
+        <br>
+        {% for error in errors %}
+            <li class="alert alert-danger" style="list-style-type: none;">{{ error.message }}</li>
+        {% endfor %}
+        <br>
+        <button type="submit" class="btn btn-warning" style="margin-left:45%">S'inscrire</button>
+    {{ form_end(registrationForm) }}
+{% endblock %}
